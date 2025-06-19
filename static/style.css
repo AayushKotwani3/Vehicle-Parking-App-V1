@@ -1,0 +1,105 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: "Montserrat",sans-serif;
+
+}
+
+html,body{
+    height: 100%;
+    background-color: #0b132b;
+    color: #edf0f1;
+}
+
+.main_page{
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.header_section{
+    padding: 30px 8%;
+    border-bottom: 1px solid white;
+    background-color: #090f22;
+
+}
+
+.header_canvas{
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 
+    inset 0 0 100px rgba(255, 255, 255, 0.11),
+    0 0 150px rgba(255, 255, 255, 0.25);
+
+}
+
+li,a,button{
+    font-weight: 500;
+    font-size: 16px;
+    color: inherit;
+    text-decoration: none;
+}
+
+
+
+.logo{
+    cursor: pointer;
+}
+
+.nav__links{
+    list-style: none;
+}
+
+.nav__links li {
+    display: inline-block;
+    padding: 0px 20px;
+}
+
+.nav__links li a {
+    transition: all 0.3s ease 0s;
+}
+
+.nav__links li a:hover {
+    color: #0088a9;
+}
+
+.nav_side_buttons button{
+    padding: 9px 25px;
+    background-color: rgba(0, 136, 169, 1);
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease 0s;
+}
+
+.header_login_button{
+    margin-right: 10px;
+}
+
+.nav_side_buttons button:hover{
+    background-color: rgba(0, 136, 169, 0.8);
+}
+
+
+.main_section{
+    flex: 1;
+    padding: 20px 10%;
+}
+
+
+
+.footer_section {
+    background-color: #121b33;
+    padding: 20px 10%;
+    text-align: center;
+    color: #edf0f1;
+    border-top: 1px solid white;
+    box-shadow: inset 0 -10px 10px rgba(255, 255, 255, 0.2);
+    
+}
+
