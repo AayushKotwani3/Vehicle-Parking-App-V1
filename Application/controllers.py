@@ -54,3 +54,10 @@ def login():
             return "User does not exist first register"
     return render_template('login.html')            
                 
+@app.route('/admin')
+def admin_dash():
+    return render_template('admin_dashboard.html')
+
+@app.route('/home/<int:user_id>')
+def user_dash():
+    return render_template('user_dashboard.html')
