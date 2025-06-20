@@ -1,4 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Delius+Swash+Caps&display=swap');
 
 *{
     box-sizing: border-box;
@@ -68,6 +70,12 @@ li,a,button{
     color: #0088a9;
 }
 
+.nav_side_buttons{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
 .nav_side_buttons button{
     padding: 9px 25px;
     background-color: rgba(0, 136, 169, 1);
@@ -81,6 +89,19 @@ li,a,button{
     margin-right: 10px;
 }
 
+#user_icon{
+    height: 21px;
+    
+}
+
+#header_signature{
+    margin-right: 10px;
+    font-family: "Delius Swash Caps";
+    text-decoration: underline;
+    font-size:medium;
+}
+
+
 .nav_side_buttons button:hover{
     background-color: rgba(0, 136, 169, 0.8);
 }
@@ -91,7 +112,20 @@ li,a,button{
     padding: 20px 10%;
 }
 
+.form-card{
+    min-width: 370px;
 
+}
+
+#login-card{
+    margin-top: 125px;
+}
+
+.register_canvas{
+    display: flex;
+    justify-content: center;
+
+}
 
 .footer_section {
     background-color: #121b33;

@@ -5,3 +5,4 @@ from .models import * #inheriting models module to make indirect connection with
 @app.route('/')
 def home():
     return render_template('home.html')
+

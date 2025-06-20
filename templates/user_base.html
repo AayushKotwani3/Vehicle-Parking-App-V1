@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %} Vehicle Parking app {% endblock %}</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="main_page">
+        
+            <header class="header_section">
+                <div class="header_canvas">
+               <img class='logo' src="/static/Vehicle parking app logo.png" alt="logo" height="50px" width="150px">
+            <nav>
+                <ul class="nav__links">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Services</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </nav> 
+            <div class="nav_side_buttons">
+                <img id="user_icon" src="/static/user_icon.png" alt="">
+                <span id="header_signature">User dashboard</span>
+                <a class='header_register_button' href="#"><button>Log Out</button></a>
+            </div>
+            <!-- <a class='header_contact_button' href="#"><button>Contact</button></a> -->
+            
+                </div>
+            </header>
+
+            <main class="main_section">
+                {% block content %}
+
+                {% endblock %}
+            </main>
+
+            <footer class="footer_section">
+                <div class="footer_canvas"></div>
+                <p>
+                    &copy; 2025 Vehicle Parking App all rights reserved
+                </p>
+            </footer>
+    </div>
+   
+</body>
+</html>

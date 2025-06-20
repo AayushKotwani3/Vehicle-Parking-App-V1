@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="main_page">
+        
+            <header class="header_section">
+                <div class="header_canvas">
+               <img class='logo' src="/static/Vehicle parking app logo.png" alt="logo" height="50px" width="150px">
+            <nav>
+                <ul class="nav__links">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Services</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </nav> 
+            <div class="nav_side_buttons">
+                <img src="/static/login_icon.png" alt="">
+               
+                <a class='header_register_button' href="#"><button>Login</button></a>
+            </div>
+            
+                </div>
+            </header>
+
+            <main class="main_section">
+                <div class="register_canvas">
+                    <div id="registration-card" class="form-card">
+                        
+                        <h1>Registration Form</h1>
+                        <form action="/register" method="post">
+                        <div class="mb-3">
+                            <label for="Username-registration" class="form-label">Enter Full name:</label>
+                            <input type="text" class="form-control" id="Username-registration" placeholder="Aayushk Kotwani" name="username">
+                        </div>
+                        <div class="mb-3">
+                            <label for="Email-registration" class="form-label">Enter Your Email</label>
+                            <input type="email" class="form-control" id="Email-registration" placeholder="Aayushk21@user.com" name="email">
+                        </div>
+                        <div class="mb-3">
+                            <label for="Address" class="form-label">Address:</label>
+                            <textarea class="form-control" id="Address" rows="3" name="Address"></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="Userpincode" class="form-label">Enter Pincode</label>
+                            <input type="text" class="form-control" id="Userpincode" placeholder="600213" name="username">
+                        </div>
+                        <div class="mb-3">
+                            <label for="Password-registration" class="form-label">Enter a Password</label>
+                            <input type="password" class="form-control" id="Password-registration" name="password">
+                        </div>
+                        
+                        
+                        
+                        
+                        <div style="text-align: center;">
+                            <input type="submit" class="btn btn-primary" value="Register">
+                            <br>
+                            <br>
+                            Already Registerd? <a href="/login" style="color:#2ebadde9;">Login</a>
+                        </div>
+                        </form>
+                    </div>
+                </div>
+            </main>
+
+            <footer class="footer_section">
+                <div class="footer_canvas"></div>
+                <p>
+                    &copy; 2025 Vehicle Parking App all rights reserved
+                </p>
+            </footer>
+    </div>
+   
+</body>
+</html>
