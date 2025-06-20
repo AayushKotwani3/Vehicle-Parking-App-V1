@@ -29,7 +29,7 @@
             <div class="nav_side_buttons">
                 <img src="/static/login_icon.png" alt="">
                
-                <a class='header_register_button' href="#"><button>Login</button></a>
+                <a class='header_register_button' href="/register"><button>Register</button></a>
             </div>
             
                 </div>
@@ -40,7 +40,7 @@
                     <div id="login-card" class="form-card">
                         
                         <h1>Login Form</h1>
-                        <form action="/register" method="post">
+                        <form action="/login" method="POST">
                         <div class="mb-3">
                             <label for="Email-registration" class="form-label">Enter Your Email(Username):</label>
                             <input type="email" class="form-control" id="Email-registration" placeholder="Aayushk21@user.com" name="email">
@@ -54,7 +54,7 @@
                             <input type="submit" class="btn btn-primary" value="Login">
                             <br>
                             <br>
-                            Don't have an Account? <a href="/login" style="color:#2ebadde9;">Register</a>
+                            Don't have an Account? <a href="/register" style="color:#2ebadde9;">Register</a>
                         </div>
                         </form>
                     </div>

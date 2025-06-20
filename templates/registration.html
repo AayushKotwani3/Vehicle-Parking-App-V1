@@ -29,7 +29,7 @@
             <div class="nav_side_buttons">
                 <img src="/static/login_icon.png" alt="">
                
-                <a class='header_register_button' href="#"><button>Login</button></a>
+                <a class='header_register_button' href="/login"><button>Login</button></a>
             </div>
             
                 </div>
@@ -40,10 +40,10 @@
                     <div id="registration-card" class="form-card">
                         
                         <h1>Registration Form</h1>
-                        <form action="/register" method="post">
+                        <form action="/register" method="POST">
                         <div class="mb-3">
                             <label for="Username-registration" class="form-label">Enter Full name:</label>
-                            <input type="text" class="form-control" id="Username-registration" placeholder="Aayushk Kotwani" name="username">
+                            <input type="text" class="form-control" id="Username-registration" placeholder="Aayushk Kotwani" name="name">
                         </div>
                         <div class="mb-3">
                             <label for="Email-registration" class="form-label">Enter Your Email</label>
@@ -51,11 +51,11 @@
                         </div>
                         <div class="mb-3">
                             <label for="Address" class="form-label">Address:</label>
-                            <textarea class="form-control" id="Address" rows="3" name="Address"></textarea>
+                            <textarea class="form-control" id="Address" rows="3" name="address"></textarea>
                         </div>
                         <div class="mb-3">
                             <label for="Userpincode" class="form-label">Enter Pincode</label>
-                            <input type="text" class="form-control" id="Userpincode" placeholder="600213" name="username">
+                            <input type="text" class="form-control" id="Userpincode" placeholder="600213" name="pincode">
                         </div>
                         <div class="mb-3">
                             <label for="Password-registration" class="form-label">Enter a Password</label>
