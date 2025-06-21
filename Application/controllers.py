@@ -1,4 +1,4 @@
-from flask import Flask,render_template,redirect,request
+from flask import Flask,render_template,redirect,request,url_for,flash
 from flask import current_app as app
 from .models import * #inheriting models module to make indirect connection with app.py
 
@@ -29,7 +29,7 @@ def register():
             db.session.add(new_user)
             db.session.commit()
             # return redirect('/login')
-            return "registeration successful"
+            return redirect(url_for('login'))
     return render_template('registration.html')    
 
 
@@ -62,6 +62,29 @@ def admin_dash():
 def user_dash():
     return render_template('user_dashboard.html')
 
-@app.route('/add-new-lot')
+@app.route('/add-new-lot',methods=['GET','POST'])
 def add_new_lot():
+    #fetching the Parking lots details from registration form
+
+    if request.method=='POST':
+        prime_location_name=request.form.get('prime_location_name')
+        address=request.form.get('address')
+        pincode=request.form.get('pincode')
+        parking_spot_price=request.form.get('parking_spot_price')
+        max_spots=request.form.get('max_spots')
+
+        #checking if parking lot already exists
+        this_parking_lot=Parkinglot.query.filter_by(address=address,pincode=pincode).first() # checking user existence with the help of email
+
+        if this_parking_lot:
+            return "Parking lot with same address already exist"
+
+        #Adding Parking Lots to database
+        new_parking_lot=Parkinglot(prime_location_name=prime_location_name,address=address,pincode=pincode, price=parking_spot_price,maximum_spots=max_spots)
+        db.session.add(new_parking_lot)
+        db.session.commit()
+
+        return redirect(url_for('admin_dash'))
+
+
     return render_template('add_parkinglot.html')

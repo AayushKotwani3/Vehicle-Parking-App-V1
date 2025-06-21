@@ -5,6 +5,7 @@ app=None
 def create_app():
     # global app
     app=Flask(__name__)
+    app.secret_key="supersecretkey890"
     app.debug=True
     app.config["SQLALCHEMY_DATABASE_URI"]="sqlite:///parkingapp.sqlite" 
     db.init_app(app)
