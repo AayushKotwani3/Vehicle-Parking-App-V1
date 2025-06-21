@@ -56,7 +56,9 @@ def login():
                 
 @app.route('/admin')
 def admin_dash():
-    return render_template('admin_dashboard.html')
+    admin_details=User.query.filter_by(role='admin').first()
+    parking_lot_details=Parkinglot.query.all()
+    return render_template('admin_dashboard.html',admin_details=admin_details,parking_lot_details=parking_lot_details)
 
 @app.route('/home/<int:user_id>')
 def user_dash():

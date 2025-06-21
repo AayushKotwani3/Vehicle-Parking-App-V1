@@ -27,81 +27,25 @@
                         </thead>
                         <tbody>
                         <!-- Looping starts here -->
+                         {% for lot in parking_lot_details %}
                         <tr>
-                            <td>Central Market</td>
-                            <td>MG Road</td>
-                            <td>485001</td>
-                            <td>₹20/hr</td>
-                            <td>50</td>
+                            <td>{{lot.prime_location_name}}</td>
+                            <td>{{lot.address}}</td>
+                            <td>{{lot.pincode}}</td>
+                            <td>₹{{lot.price}}/hr</td>
+                            <td>{{lot.maximum_spots}}</td>
                             <td>35</td>
                             <td>15</td>
-                            <td>Yes</td>
+                            <td>{{'Yes' if lot.is_active else 'No'}}</td>
                             <td class="admin-parking-lot-table-buttons">
                                 <button class="view-button">View</button>
                                 <button class="edit-button">Edit</button>
                                 <button class="delete-button">Delete</button>
                             </td>
                         </tr>
-                        <tr>
-                            <td>Central Market</td>
-                            <td>MG Road</td>
-                            <td>485001</td>
-                            <td>₹20/hr</td>
-                            <td>50</td>
-                            <td>35</td>
-                            <td>15</td>
-                            <td>Yes</td>
-                            <td class="admin-parking-lot-table-buttons">
-                                <button class="view-button">View</button>
-                                <button class="edit-button">Edit</button>
-                                <button class="delete-button">Delete</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Central Market</td>
-                            <td>MG Road</td>
-                            <td>485001</td>
-                            <td>₹20/hr</td>
-                            <td>50</td>
-                            <td>35</td>
-                            <td>15</td>
-                            <td>Yes</td>
-                            <td class="admin-parking-lot-table-buttons">
-                                <button class="view-button">View</button>
-                                <button class="edit-button">Edit</button>
-                                <button class="delete-button">Delete</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Central Market</td>
-                            <td>MG Road</td>
-                            <td>485001</td>
-                            <td>₹20/hr</td>
-                            <td>50</td>
-                            <td>35</td>
-                            <td>15</td>
-                            <td>Yes</td>
-                            <td class="admin-parking-lot-table-buttons">
-                                <button class="view-button">View</button>
-                                <button class="edit-button">Edit</button>
-                                <button class="delete-button">Delete</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Central Market</td>
-                            <td>MG Road</td>
-                            <td>485001</td>
-                            <td>₹20/hr</td>
-                            <td>50</td>
-                            <td>35</td>
-                            <td>15</td>
-                            <td>Yes</td>
-                            <td class="admin-parking-lot-table-buttons">
-                                <button class="view-button">View</button>
-                                <button class="edit-button">Edit</button>
-                                <button class="delete-button">Delete</button>
-                            </td>
-                        </tr>
+                        {% endfor %}
+                        
+                            
                         
                     </tbody>
                   </table>

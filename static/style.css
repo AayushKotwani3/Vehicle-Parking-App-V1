@@ -145,10 +145,14 @@ li,a,button{
 .admin-parkinglot-table-heading-Addlot-button{
     color: #0b132b;
     padding: 12px 24px;
-    margin-right: 20px;
-    background-color: #00b894;
+    border-radius: 20px;
+    margin-right: 10px;
+    background-color: #05c9a2;
     cursor: pointer;
     transition: all 0.3s ease 0s;
+}
+.admin-parkinglot-table-heading-Addlot-button:hover{
+    background-color: #03ecbd;
 }
 
 .admin-parkinglot-table-container{
