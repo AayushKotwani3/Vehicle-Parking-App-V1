@@ -61,3 +61,7 @@ def admin_dash():
 @app.route('/home/<int:user_id>')
 def user_dash():
     return render_template('user_dashboard.html')
+
+@app.route('/add-new-lot')
+def add_new_lot():
+    return render_template('add_parkinglot.html')

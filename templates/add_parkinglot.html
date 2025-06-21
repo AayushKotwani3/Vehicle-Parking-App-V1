@@ -1,0 +1,43 @@
+{% extends 'admin_base.html' %}
+
+{% block title %} Admin Dashboard {% endblock %}
+
+{% block content %} 
+
+                <div class="form_canvas">
+                    <div id="add-new-lot-card" class="form-card">
+                        
+                        <h1>Add new Parking lot</h1>
+                        <form action="/add-new-lot" method="POST">
+                        <div class="mb-3" >
+                            <label for="prime-location-name" class="form-label">Enter Prime location name:</label>
+                            <input type="text" class="form-control" id="prime-location-name" placeholder="Dwarka" name="prime-location-name" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="Address" class="form-label">Address:</label>
+                            <textarea class="form-control" id="Address" rows="3" name="address" required></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="Parking-lot-pincode" class="form-label">Enter Pincode</label>
+                            <input type="text" class="form-control" id="Parking-lot-pincode" placeholder="600213" name="pincode" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="Parking-spot-price" class="form-label">Price(per hour):</label>
+                            <input type="number"  step="any" class="form-control" id="Parking-spot-price" placeholder="210" name="parking-spot-price" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="max-parking-spots" class="form-label">Maximum number of spots</label>
+                            <input type="number"  step="1" min="1" class="form-control" id="Parking-spot-price" placeholder="30" name="parking-spot-price" required>
+                        </div>
+
+                        
+                        <div style="text-align: center;">
+                            <input type="submit" class="btn btn-success" value="Add">
+                            <br>
+                            
+                        </div>
+                        </form>
+                    </div>
+                </div>
+
+{% endblock %}
