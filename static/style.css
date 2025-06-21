@@ -137,3 +137,78 @@ li,a,button{
     
 }
 
+.admin-parkinglot-table-heading-container{
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+.admin-parkinglot-table-heading-Addlot-button{
+    color: #0b132b;
+    padding: 12px 24px;
+    margin-right: 20px;
+    background-color: #00b894;
+    cursor: pointer;
+    transition: all 0.3s ease 0s;
+}
+
+.admin-parkinglot-table-container{
+    padding: 22px;
+    
+    background-color: rgba(255, 255, 255, 0.040);
+    border: #f7f7f7;
+    overflow-y: auto;
+    max-height: 350px;
+}
+
+.admin-parkinglot-table{
+    width: 100%;
+    /* text-align: left; */
+    /* padding: 20px; */
+    border-radius: 30px;
+    border-collapse: separate;
+    border-spacing: 0px;
+}
+.admin-parkinglot-table th,
+.admin-parkinglot-table td{
+    padding: 12px 10px;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.080);;
+}
+
+.admin-parkinglot-table th{
+    text-align: left;
+    background-color: rgba(255, 255, 255, 0.05);
+    font-weight: 600;
+}
+
+.admin-parkinglot-table td{
+    text-align: left;
+}
+
+.admin-parking-lot-table-buttons button{
+    color: #0b132b;
+    width: 65px;
+    cursor: pointer;
+    transition: all 0.3s ease 0s;
+}
+
+.admin-parking-lot-table-buttons .view-button{
+    background-color: #0096c7;
+}
+.admin-parking-lot-table-buttons .edit-button{
+    background-color: #ffb703;
+}
+.admin-parking-lot-table-buttons .delete-button{
+    background-color: #ef233c;
+}
+
+.admin-parking-lot-table-buttons .view-button:hover{
+    background-color: #0095c7c3;
+}
+
+.admin-parking-lot-table-buttons .edit-button:hover{
+    background-color: #ffb803c3;
+}
+
+.admin-parking-lot-table-buttons .delete-button:hover{
+    background-color: #ef233cc3;
+}
