@@ -90,3 +90,8 @@ def add_new_lot():
 
 
     return render_template('add_parkinglot.html')
+
+@app.route('/edit-parking-lot/<int:lot_id>',methods=['GET','POST'])
+def edit_parking_lot(lot_id):
+    current_parking_lot=Parkinglot.query.filter_by(id=lot_id).first()
+    return render_template('edit_parkinglot.html',current_parking_lot=current_parking_lot)

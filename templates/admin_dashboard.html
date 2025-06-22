@@ -38,9 +38,9 @@
                             <td>15</td>
                             <td>{{'Yes' if lot.is_active else 'No'}}</td>
                             <td class="admin-parking-lot-table-buttons">
-                                <button class="view-button">View</button>
-                                <button class="edit-button">Edit</button>
-                                <button class="delete-button">Delete</button>
+                                <a href=""><button class="view-button">View</button></a>
+                                 <a href="/edit-parking-lot/{{lot.id}}"><button class="edit-button">Edit</button></a>
+                                 <a href=""></a><button class="delete-button">Delete</button></a>
                             </td>
                         </tr>
                         {% endfor %}

@@ -1,0 +1,49 @@
+{% extends 'admin_base.html' %}
+
+{% block title %} Admin Dashboard {% endblock %}
+
+{% block content %} 
+
+                <div class="form_canvas">
+                    <div id="edit-lot-card" class="form-card">
+                        
+                        <h1>Edit Parking lot <b>{{ current_parking_lot.id }}</b></h1>
+                        <form action="/edit-parking-lot/{{ current_parking_lot.id }}" method="POST">
+                        <div class="mb-3" >
+                            <label for="prime-location-name" class="form-label">Enter Prime location name:</label>
+                            <input type="text" class="form-control" id="prime-location-name" placeholder="Dwarka" name="prime_location_name" value="{{ current_parking_lot.prime_location_name }}" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="Address" class="form-label">Address:</label>
+                            <textarea class="form-control" id="Address" rows="2" name="address" required>{{ current_parking_lot.address }}</textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="Parking-lot-pincode" class="form-label">Enter Pincode</label>
+                            <input type="text" class="form-control" id="Parking-lot-pincode" placeholder="600213" name="pincode" value="{{ current_parking_lot.pincode}}" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="Parking-spot-price" class="form-label">Price(per hour):</label>
+                            <input type="number"  step="any" class="form-control" id="Parking-spot-price" placeholder="210" name="parking_spot_price" value="{{ current_parking_lot.price}}" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="max-parking-spots" class="form-label">Maximum number of spots</label>
+                            <input type="number"  step="1" min="1" class="form-control" id="Parking-spot-price" placeholder="30" name="max_spots" value="{{ current_parking_lot.maximum_spots }}" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="lot-status" class="form-label">Lot Status</label>
+                            <select class="form-select" aria-label="Default select example" id="lot-status"  name="is_active" value="{{ current_parking_lot.is_active }}" required>
+                                <option value="1">Active</option>
+                                <option value="0">Not Active</option>
+                            </select>
+                        </div>
+
+                        <div style="text-align: center;">
+                            <input type="submit" class="btn btn-success" value="Add">
+                            <br>
+                            
+                        </div>
+                        </form>
+                    </div>
+                </div>
+
+{% endblock %}
