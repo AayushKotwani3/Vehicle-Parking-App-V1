@@ -94,4 +94,18 @@ def add_new_lot():
 @app.route('/edit-parking-lot/<int:lot_id>',methods=['GET','POST'])
 def edit_parking_lot(lot_id):
     current_parking_lot=Parkinglot.query.filter_by(id=lot_id).first()
+
+    if request.method=='POST':
+        current_parking_lot.prime_location_name=request.form.get('prime_location_name')
+        current_parking_lot.address=request.form.get('address')
+        current_parking_lot.pincode=request.form.get('pincode')
+        current_parking_lot.price=float(request.form.get('parking_spot_price'))
+        current_parking_lot.maximum_spots=int(request.form.get('max_spots'))
+        current_parking_lot.is_active=bool(int(request.form.get('is_active')))
+
+        db.session.commit()
+        return redirect(url_for('admin_dash'))
+        
+
+
     return render_template('edit_parkinglot.html',current_parking_lot=current_parking_lot)
