@@ -155,7 +155,7 @@ li,a,button{
     background-color: #03ecbd;
 }
 
-.admin-parkinglot-table-container{
+.parkinglot-table-container{
     padding: 22px;
     
     background-color: rgba(255, 255, 255, 0.040);
@@ -164,7 +164,7 @@ li,a,button{
     max-height: 350px;
 }
 
-.admin-parkinglot-table{
+.parkinglot-table{
     width: 100%;
     /* text-align: left; */
     /* padding: 20px; */
@@ -172,47 +172,55 @@ li,a,button{
     border-collapse: separate;
     border-spacing: 0px;
 }
-.admin-parkinglot-table th,
-.admin-parkinglot-table td{
+.parkinglot-table th,
+.parkinglot-table td{
     padding: 12px 10px;
     border-bottom: 2px solid rgba(255, 255, 255, 0.080);;
 }
 
-.admin-parkinglot-table th{
+.parkinglot-table th{
     text-align: left;
     background-color: rgba(255, 255, 255, 0.05);
     font-weight: 600;
 }
 
-.admin-parkinglot-table td{
+.parkinglot-table td{
     text-align: left;
 }
 
-.admin-parking-lot-table-buttons button{
+.parking-lot-table-buttons button{
     color: #0b132b;
     width: 65px;
     cursor: pointer;
     transition: all 0.3s ease 0s;
 }
 
-.admin-parking-lot-table-buttons .view-button{
+.parking-lot-table-buttons .view-button{
     background-color: #0096c7;
 }
-.admin-parking-lot-table-buttons .edit-button{
+.parking-lot-table-buttons .edit-button{
     background-color: #ffb703;
 }
-.admin-parking-lot-table-buttons .delete-button{
+.parking-lot-table-buttons .delete-button{
     background-color: #ef233c;
 }
 
-.admin-parking-lot-table-buttons .view-button:hover{
+.parking-lot-table-buttons .view-button:hover{
     background-color: #0095c7c3;
 }
 
-.admin-parking-lot-table-buttons .edit-button:hover{
+.parking-lot-table-buttons .edit-button:hover{
     background-color: #ffb803c3;
 }
 
-.admin-parking-lot-table-buttons .delete-button:hover{
+.parking-lot-table-buttons .delete-button:hover{
     background-color: #ef233cc3;
+}
+
+.parking-lot-table-buttons .book-button{
+    background-color: #0a9fd1;
+}
+
+.parking-lot-table-buttons .book-button:hover{
+    background-color: rgba(48, 193, 241, 0.926)
 }

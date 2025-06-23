@@ -3,7 +3,64 @@
 {% block title %} User Dashboard {% endblock %}
 
 {% block content %} 
+        <div class="admin-parkinglot-table-heading-container">
+                    <h2>Welcome {{ user_details.name }}</h2>                    
+                </div>
 
-main page 
+        <div class="admin-parkinglot-table-heading-container">
+                    <h2>Search Your Spot</h2>                    
+                </div>        
+        
+        <!-- <form class="d-flex" action="/home/{{user_details.id}}" method="POST"> -->
+                <form class="d-flex" action="{{ url_for('user_dash',user_id=user_details.id) }}" method="POST">
+
+                  <select class="form-select me-2" aria-label="Default select example" name="key" required>
+                    <option selected>select</option>
+                    <option value="pincode">Pincode</option>
+                    <option value="location">Location</option>
+                  </select>
+                  <input class="form-control me-2" type="text" name="search_value" placeholder="Search" aria-label="Search" required>
+                  
+                  <input class="btn btn-outline-success" type="submit" value="Search">
+                </form>
+                
+        <div class="parkinglot-table-container">
+                    
+                  <table class="parkinglot-table">
+                        <thead>
+                          <tr>
+                              <th>Lot id</th>
+                              <th>Location</th>
+                              <th>Address</th>
+                              <th>Pincode</th>
+                              <th>Price</th>
+                              <th>Available Spots</th>
+                              <th>Action</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                        <!-- Looping starts here -->
+                         {% for lot in parking_lot_details %}
+                        <tr>
+                            <td>{{lot.id}}
+                            <td>{{lot.prime_location_name}}</td>
+                            <td>{{lot.address}}</td>
+                            <td>{{lot.pincode}}</td>
+                            <td>₹{{lot.price}}/hr</td>
+                            <td>25</td>
+                            <td class="parking-lot-table-buttons">
+                                
+                                 <a href="/book-parking-spot/{{lot.id}}"><button class="book-button">Book</button></a>
+                                 
+                            </td>
+                        </tr>
+                        {% endfor %}
+                        
+                            
+                        
+                    </tbody>
+                  </table>
+                  
+                </div>
 
 {% endblock %}

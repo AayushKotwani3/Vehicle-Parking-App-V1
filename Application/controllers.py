@@ -60,9 +60,25 @@ def admin_dash():
     parking_lot_details=Parkinglot.query.all()
     return render_template('admin_dashboard.html',admin_details=admin_details,parking_lot_details=parking_lot_details)
 
-@app.route('/home/<int:user_id>')
-def user_dash():
-    return render_template('user_dashboard.html')
+@app.route('/home/<int:user_id>',methods=['GET','POST'])
+def user_dash(user_id):
+
+    user_details=User.query.filter_by(role='user',id=user_id).first()
+    
+    if request.method=='POST':
+        key=request.form.get('key')
+        search_value=request.form.get('search_value')
+
+        if key=='pincode':
+            parking_lot_details=Parkinglot.query.filter_by(is_active=True,pincode=search_value).all()
+        else:
+            parking_lot_details=Parkinglot.query.filter_by(is_active=True,prime_location_name=search_value).all()  
+
+        return render_template('user_dashboard.html',user_details=user_details,parking_lot_details=parking_lot_details)
+    else:
+        parking_lot_details=Parkinglot.query.filter_by(is_active=True).all()
+        return render_template('user_dashboard.html',user_details=user_details,parking_lot_details=parking_lot_details)
+
 
 @app.route('/add-new-lot',methods=['GET','POST'])
 def add_new_lot():
@@ -85,6 +101,16 @@ def add_new_lot():
         new_parking_lot=Parkinglot(prime_location_name=prime_location_name,address=address,pincode=pincode, price=parking_spot_price,maximum_spots=max_spots)
         db.session.add(new_parking_lot)
         db.session.commit()
+
+        #creating spots based on the lot created 
+
+        this_parking_lot=Parkinglot.query.filter_by(address=address,pincode=pincode).first()
+        max_spots=int(this_parking_lot.maximum_spots)
+
+        for i in range(1,max_spots+1):
+            new_spot=Parkingspots(lot_id=this_parking_lot.id,spot_number=i,status='A')
+            db.session.add(new_spot)
+            db.session.commit()
 
         return redirect(url_for('admin_dash'))
 
