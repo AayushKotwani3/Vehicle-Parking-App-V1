@@ -137,12 +137,12 @@ li,a,button{
     
 }
 
-.admin-parkinglot-table-heading-container{
+.parkinglot-table-heading-container{
     margin-bottom: 10px;
     display: flex;
     justify-content: space-between;
 }
-.admin-parkinglot-table-heading-Addlot-button{
+.parkinglot-table-heading-Addlot-button{
     color: #0b132b;
     padding: 12px 24px;
     border-radius: 20px;
@@ -151,8 +151,19 @@ li,a,button{
     cursor: pointer;
     transition: all 0.3s ease 0s;
 }
-.admin-parkinglot-table-heading-Addlot-button:hover{
+.parkinglot-table-heading-Addlot-button:hover{
     background-color: #03ecbd;
+}
+
+.parkinglot-table-heading-container-user{
+    display: flex;
+    justify-content: center;
+}
+
+.parkinglot-table-heading-container-user-parkings{
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
 }
 
 .parkinglot-table-container{

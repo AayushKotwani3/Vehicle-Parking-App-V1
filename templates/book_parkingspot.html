@@ -1,0 +1,40 @@
+{% extends 'user_base.html' %}
+
+{% block title %} Book Your Spot {% endblock %}
+
+{% block content %} 
+
+                <div class="form_canvas">
+                    <div id="book-lot-card" class="form-card">
+                        
+                        <h1>Book Your Spot</h1>
+                        <form action="/book-parking-spot/{{ user_details.id }}/{{ parking_lot_details.id }}" method="POST">
+                        <div class="mb-3" >
+                            <label for="user-id" class="form-label">User id</label>
+                            <input type="text" class="form-control" id="user-id"  name="user_id" value="{{ user_details.id }}" readonly>
+                        </div>
+                        <div class="mb-3" >
+                            <label for="lot-id" class="form-label">Parking lot id</label>
+                            <input type="text" class="form-control" id="lot-id"  name="lot_id" value="{{ parking_lot_details.id }}" readonly>
+                        </div>
+                        <div class="mb-3" >
+                            <label for="spot-id" class="form-label">Spot id</label>
+                            <input type="text" class="form-control" id="spot-id"  name="spot_id" value="{{ spot_details.id }}" readonly>
+                        </div>
+                        <div class="mb-3" >
+                            <label for="vehicle-number" class="form-label">Enter your vehicle number</label>
+                            <input type="text" class="form-control" id="vehicle-number"  name="vehicle_number"  required>
+                        </div>
+                        
+                       
+
+                        <div style="text-align: center;">
+                            <input type="submit" class="btn btn-success" value="Add">
+                            <br>
+                            
+                        </div>
+                        </form>
+                    </div>
+                </div>
+
+{% endblock %}

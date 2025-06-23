@@ -3,11 +3,11 @@
 {% block title %} User Dashboard {% endblock %}
 
 {% block content %} 
-        <div class="admin-parkinglot-table-heading-container">
+        <div class="parkinglot-table-heading-container">
                     <h2>Welcome {{ user_details.name }}</h2>                    
                 </div>
 
-        <div class="admin-parkinglot-table-heading-container">
+        <div class="parkinglot-table-heading-container-user">
                     <h2>Search Your Spot</h2>                    
                 </div>        
         
@@ -50,7 +50,7 @@
                             <td>25</td>
                             <td class="parking-lot-table-buttons">
                                 
-                                 <a href="/book-parking-spot/{{lot.id}}"><button class="book-button">Book</button></a>
+                                 <a href="/book-parking-spot/{{user_details.id}}/{{lot.id}}"><button class="book-button">Book</button></a>
                                  
                             </td>
                         </tr>
@@ -61,6 +61,10 @@
                     </tbody>
                   </table>
                   
+                </div>
+
+                <div class="parkinglot-table-heading-container-user-parkings">
+                    <h2>Your Parkings</h2>                    
                 </div>
 
 {% endblock %}

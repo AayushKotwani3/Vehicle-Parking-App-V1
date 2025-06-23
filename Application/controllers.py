@@ -1,6 +1,7 @@
 from flask import Flask,render_template,redirect,request,url_for,flash
 from flask import current_app as app
 from .models import * #inheriting models module to make indirect connection with app.py
+from datetime import datetime,timezone
 
 @app.route('/')
 def home():
@@ -135,3 +136,22 @@ def edit_parking_lot(lot_id):
 
 
     return render_template('edit_parkinglot.html',current_parking_lot=current_parking_lot)
+
+@app.route('/book-parking-spot/<int:user_id>/<int:lot_id>',methods=['GET','POST'])
+def book_parking_lot(user_id,lot_id):
+    spot_details=Parkingspots.query.filter_by(lot_id=lot_id,status='A').first()
+    user_details=User.query.filter_by(role='user',id=user_id).first()
+    parking_lot_details=Parkinglot.query.filter_by(id=lot_id).first()
+
+    if request.method=='POST':
+        vehicle_number=request.form.get('vehicle_number')
+        new_parking_record=Parkingrecords(spot_id=spot_details.id,user_id=user_details.id,vehicle_number=vehicle_number,parking_timestamp=datetime.now(timezone.utc))
+        db.session.add(new_parking_record)
+        db.session.commit()
+
+        spot_details.status='O'
+        db.session.commit()
+
+    return render_template('book_parkingspot.html',spot_details=spot_details,user_details=user_details,parking_lot_details=parking_lot_details)
+
+    
