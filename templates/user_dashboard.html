@@ -66,5 +66,52 @@
                 <div class="parkinglot-table-heading-container-user-parkings">
                     <h2>Your Parkings</h2>                    
                 </div>
+                
+              <div class="parkinglot-table-container">
+                <table class="parkinglot-table">
+                        <thead>
+                          <tr>
+                              <th>Spot id</th>
+                              <th>Location</th>
+                              <th>Address</th>
+                              <th>Pincode</th>
+                              <th>Vehicle number</th>
+                              <th>Parking timestamp</th>
+                              <!-- <th>Action</th> -->
+                          </tr>
+                        </thead>
+                        <tbody>
+                        <!-- Looping starts here -->
+                         {% for records in parking_records %}
+                        <tr>
+                            <td>{{records.spot_id}}
+                            <td>{{records.spot.lot.prime_location_name}}</td>
+                            <td>{{records.spot.lot.address}}</td>
+                            <td>{{records.spot.lot.pincode}}</td>
+                            <td>{{records.vehicle_number}}</td>
+                            <td>{{records.parking_timestamp.strftime("%d-%m-%Y %I:%M %p")}}</td>
 
+                            {% if records.status=='reserved' %}
+                              <td class="parking-lot-table-buttons">
+                                  
+                                  <a href="/release-parking-spot/{{records.id}}"><button class="release-button">Release</button></a>
+                                  
+                              </td>
+                            {% else %}
+                              <td class="parking-lot-table-buttons">
+                                  
+                                  <a href=""><button class="parked-out-button">Parked Out</button></a>
+                                  
+                              </td>
+                            {% endif %}  
+
+                        </tr>
+                        {% endfor %}
+                        
+                            
+                        
+                    </tbody>
+                  </table>
+                  
+                </div>
 {% endblock %}

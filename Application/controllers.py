@@ -65,6 +65,7 @@ def admin_dash():
 def user_dash(user_id):
 
     user_details=User.query.filter_by(role='user',id=user_id).first()
+    parking_records=Parkingrecords.query.filter_by(user_id=user_details.id).all()
     
     if request.method=='POST':
         key=request.form.get('key')
@@ -75,10 +76,10 @@ def user_dash(user_id):
         else:
             parking_lot_details=Parkinglot.query.filter_by(is_active=True,prime_location_name=search_value).all()  
 
-        return render_template('user_dashboard.html',user_details=user_details,parking_lot_details=parking_lot_details)
+        return render_template('user_dashboard.html',user_details=user_details,parking_lot_details=parking_lot_details,parking_records=parking_records)
     else:
         parking_lot_details=Parkinglot.query.filter_by(is_active=True).all()
-        return render_template('user_dashboard.html',user_details=user_details,parking_lot_details=parking_lot_details)
+        return render_template('user_dashboard.html',user_details=user_details,parking_lot_details=parking_lot_details,parking_records=parking_records)
 
 
 @app.route('/add-new-lot',methods=['GET','POST'])
@@ -152,6 +153,41 @@ def book_parking_lot(user_id,lot_id):
         spot_details.status='O'
         db.session.commit()
 
+        return redirect(url_for('user_dash',user_id=user_details.id))
+
     return render_template('book_parkingspot.html',spot_details=spot_details,user_details=user_details,parking_lot_details=parking_lot_details)
+
+@app.route('/release-parking-spot/<int:record_id>',methods=['GET','POST'])
+def release_spot(record_id):
+    parking_record=Parkingrecords.query.filter_by(id=record_id).first()
+
+    if request.method=='POST':
+        parking_spot=Parkingspots.query.filter_by(id=parking_record.spot_id).first()
+
+        leaving_timestamp=request.form.get('leaving_time')
+
+        leaving_time_for_db=datetime.strptime(leaving_timestamp,'%d-%m-%Y %I:%M %p')
+
+        parking_record.leaving_timestamp=leaving_time_for_db
+
+        parking_record.parking_cost=float(request.form.get('total_cost'))
+        parking_record.status='released'
+
+        parking_spot.status='A'
+
+        db.session.commit()
+        return redirect(url_for('user_dash',user_id=parking_record.user_id))
+
+
+
+    # calculting leaving timestamp and final cost
+    leaving_timestamp=datetime.now()
+    spot_price=float(parking_record.spot.lot.price)
+    total_time_in_seconds=(leaving_timestamp-parking_record.parking_timestamp).total_seconds()
+    total_time_in_hours=total_time_in_seconds/3600
+    final_cost=round((spot_price*total_time_in_hours),2)
+
+
+    return render_template('release_parkingspot.html',parking_record=parking_record,leaving_timestamp=leaving_timestamp,final_cost=final_cost)
 
     
