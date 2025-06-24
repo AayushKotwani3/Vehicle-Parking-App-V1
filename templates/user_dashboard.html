@@ -83,32 +83,39 @@
                         <tbody>
                         <!-- Looping starts here -->
                          {% for records in parking_records %}
-                        <tr>
-                            <td>{{records.spot_id}}
-                            <td>{{records.spot.lot.prime_location_name}}</td>
-                            <td>{{records.spot.lot.address}}</td>
-                            <td>{{records.spot.lot.pincode}}</td>
-                            <td>{{records.vehicle_number}}</td>
-                            <td>{{records.parking_timestamp.strftime("%d-%m-%Y %I:%M %p")}}</td>
-
                             {% if records.status=='reserved' %}
-                              <td class="parking-lot-table-buttons">
-                                  
-                                  <a href="/release-parking-spot/{{records.id}}"><button class="release-button">Release</button></a>
-                                  
-                              </td>
-                            {% else %}
-                              <td class="parking-lot-table-buttons">
-                                  
-                                  <a href=""><button class="parked-out-button">Parked Out</button></a>
-                                  
-                              </td>
-                            {% endif %}  
-
-                        </tr>
+                              <tr>
+                                  <td>{{records.spot_id}}
+                                  <td>{{records.spot.lot.prime_location_name}}</td>
+                                  <td>{{records.spot.lot.address}}</td>
+                                  <td>{{records.spot.lot.pincode}}</td>
+                                  <td>{{records.vehicle_number}}</td>
+                                  <td>{{records.parking_timestamp.strftime("%d-%m-%Y %I:%M %p")}}</td>
+                                  <td class="parking-lot-table-buttons">
+                                        
+                                        <a href="/release-parking-spot/{{records.id}}"><button class="release-button">Release</button></a>
+                                        
+                                  </td>
+                                </tr>
+                            {% endif %}
+                        {% endfor %} 
+                        {% for records in parking_records %}
+                            {% if records.status=='released' %} 
+                              <tr>
+                                  <td>{{records.spot_id}}
+                                  <td>{{records.spot.lot.prime_location_name}}</td>
+                                  <td>{{records.spot.lot.address}}</td>
+                                  <td>{{records.spot.lot.pincode}}</td>
+                                  <td>{{records.vehicle_number}}</td>
+                                  <td>{{records.parking_timestamp.strftime("%d-%m-%Y %I:%M %p")}}</td>
+                                  <td class="parking-lot-table-buttons">
+                                        
+                                        <a href=><button class="parked-out-button">Parked out</button></a>
+                                        
+                                  </td>
+                                </tr>
+                            {% endif %}    
                         {% endfor %}
-                        
-                            
                         
                     </tbody>
                   </table>

@@ -209,10 +209,10 @@ li,a,button{
 .parking-lot-table-buttons .view-button{
     background-color: #0096c7;
 }
-.parking-lot-table-buttons .edit-button{
+.parking-lot-table-buttons .edit-button,.parking-lot-table-buttons .parked-out-button{
     background-color: #ffb703;
 }
-.parking-lot-table-buttons .delete-button{
+.parking-lot-table-buttons .delete-button,.parking-lot-table-buttons .release-button{
     background-color: #ef233c;
 }
 
@@ -220,11 +220,11 @@ li,a,button{
     background-color: #0095c7c3;
 }
 
-.parking-lot-table-buttons .edit-button:hover{
+.parking-lot-table-buttons .edit-button:hover,.parking-lot-table-buttons .parked-out-button:hover{
     background-color: #ffb803c3;
 }
 
-.parking-lot-table-buttons .delete-button:hover{
+.parking-lot-table-buttons .delete-button:hover,.parking-lot-table-buttons .release-button:hover{
     background-color: #ef233cc3;
 }
 
