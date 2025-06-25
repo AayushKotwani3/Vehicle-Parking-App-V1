@@ -12,15 +12,17 @@
             <div class="view-parking-lot">
             {% for spots in parking_spots %}
                 {% if spots.status=='A' %}
-
-                    <div class="parking-spots-available">
-                        {{spots.spot_number}}
-                    </div>
+                    <a href="/view-parking-spot/Available/{{spots.id}}">
+                        <div class="parking-spots-available">
+                            {{spots.spot_number}}
+                        </div>
+                    </a>
                 {% else %}
-
-                    <div class="parking-spots-occupied">
-                        {{spots.spot_number}}
-                    </div>
+                    <a href="/view-parking-spot/Occupied/{{spots.id}}">
+                        <div class="parking-spots-occupied">
+                            {{spots.spot_number}}
+                        </div>
+                    </a>
                 {% endif %}
             {% endfor %}        
             </div>  
