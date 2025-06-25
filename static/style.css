@@ -235,3 +235,59 @@ li,a,button{
 .parking-lot-table-buttons .book-button:hover{
     background-color: rgba(48, 193, 241, 0.926)
 }
+
+.view-container{
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+    /* height: max-content; */
+    min-height: 300px;
+    margin-top: 20px;
+
+}
+
+.view-parking-lot{
+    background-color: rgba(16, 24, 63, 0.445);
+    /* height: 100px; */
+    /* width: 50%; */
+    min-width: 50%;
+    height: auto;
+    display: flex;
+    min-height: 300px;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-content: flex-start;
+    padding: 10px;
+    max-width: 1200px;
+    
+}
+
+.parking-spots-available{
+    height: 55px;
+    width: 55px;
+    /* padding: 5px; */
+    /* margin: 10px; */
+    background-color: #2a9d8f	;
+    margin: 7px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+}
+
+.parking-spots-occupied{
+    height: 55px;
+    width: 55px;
+    /* padding: 5px; */
+    /* margin: 10px; */
+    background-color: #b0413e	;
+    margin: 7px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+}
+/* #b0413e	for occupied */
+/* #2a9d8f for available */

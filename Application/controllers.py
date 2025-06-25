@@ -2,6 +2,7 @@ from flask import Flask,render_template,redirect,request,url_for,flash
 from flask import current_app as app
 from .models import * #inheriting models module to make indirect connection with app.py
 from datetime import datetime,timezone
+from random import shuffle
 
 @app.route('/')
 def home():
@@ -190,4 +191,9 @@ def release_spot(record_id):
 
     return render_template('release_parkingspot.html',parking_record=parking_record,leaving_timestamp=leaving_timestamp,final_cost=final_cost)
 
-    
+@app.route('/view-parking-lot/<int:lot_id>')
+def view_lot(lot_id):
+    parking_spots=Parkingspots.query.filter_by(lot_id=lot_id).all()
+    # shuffle(parking_spots)
+
+    return render_template('view_parkinglot.html',parking_spots=parking_spots)    

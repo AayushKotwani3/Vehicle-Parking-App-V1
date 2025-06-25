@@ -1,0 +1,28 @@
+{% extends 'admin_base.html' %}
+
+{% block title %} View lot {% endblock %}
+
+{% block content %} 
+
+<div class="view-container">
+            <div class="view-lot-heading">
+                <h2> View Lot </h2>
+            </div>
+
+            <div class="view-parking-lot">
+            {% for spots in parking_spots %}
+                {% if spots.status=='A' %}
+
+                    <div class="parking-spots-available">
+                        {{spots.spot_number}}
+                    </div>
+                {% else %}
+
+                    <div class="parking-spots-occupied">
+                        {{spots.spot_number}}
+                    </div>
+                {% endif %}
+            {% endfor %}        
+            </div>  
+</div>              
+{% endblock %}
