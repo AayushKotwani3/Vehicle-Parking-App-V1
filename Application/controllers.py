@@ -147,7 +147,7 @@ def book_parking_lot(user_id,lot_id):
 
     if request.method=='POST':
         vehicle_number=request.form.get('vehicle_number')
-        new_parking_record=Parkingrecords(spot_id=spot_details.id,user_id=user_details.id,vehicle_number=vehicle_number,parking_timestamp=datetime.now(timezone.utc))
+        new_parking_record=Parkingrecords(spot_id=spot_details.id,user_id=user_details.id,vehicle_number=vehicle_number,parking_timestamp=datetime.now())
         db.session.add(new_parking_record)
         db.session.commit()
 
@@ -191,14 +191,14 @@ def release_spot(record_id):
 
     return render_template('release_parkingspot.html',parking_record=parking_record,leaving_timestamp=leaving_timestamp,final_cost=final_cost)
 
-@app.route('/view-parking-lot/<int:lot_id>')
+@app.route('/view-parking-lot/<int:lot_id>',methods=['GET','POST'])
 def view_lot(lot_id):
     parking_spots=Parkingspots.query.filter_by(lot_id=lot_id).all()
     # shuffle(parking_spots)
 
     return render_template('view_parkinglot.html',parking_spots=parking_spots)    
 
-@app.route('/view-parking-spot/Available/<int:spot_id>')
+@app.route('/view-parking-spot/Available/<int:spot_id>',methods=['GET','POST'])
 def available_spot(spot_id):
     available_spot=Parkingspots.query.filter_by(id=spot_id).first()
     parking_count=Parkingrecords.query.filter_by(spot_id=spot_id).count()
@@ -212,8 +212,17 @@ def occupied_spot(spot_id):
     parking_count=Parkingrecords.query.filter_by(spot_id=spot_id).count()
     parking_record=Parkingrecords.query.filter_by(spot_id=spot_id,status='reserved').first()
     user_id=parking_record.user_id
-    user_details=User.query.filter_by(id=user_id)
-    return render_template('Occupied_spot.html',occupied_spot=occupied_spot,parking_count=parking_count,parking_record=parking_record,user_details=user_details)
+    user_details=User.query.filter_by(id=user_id).first()
+
+    # calculting leaving timestamp and estimated cost
+
+    leaving_timestamp=datetime.now()
+    spot_price=float(parking_record.spot.lot.price)
+    total_time_in_seconds=(leaving_timestamp-parking_record.parking_timestamp).total_seconds()
+    total_time_in_hours=total_time_in_seconds/3600
+    estimated_cost=round((spot_price*total_time_in_hours),2)
+
+    return render_template('Occupied_spot.html',occupied_spot=occupied_spot,parking_count=parking_count,parking_record=parking_record,user_details=user_details,estimated_cost=estimated_cost)
 
 @app.route('/view-parking-spot/Available/Delete/<int:spot_id>',methods=['POST'])
 def spot_delete(spot_id):

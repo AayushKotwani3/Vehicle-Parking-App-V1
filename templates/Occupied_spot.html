@@ -1,0 +1,52 @@
+{% extends 'admin_base.html' %}
+
+{% block title %} View lot {% endblock %}
+
+{% block content %} 
+
+<div class="form_canvas">
+                    <div id="Available-spot-card" class="form-card">
+                            <h1>Spot number {{occupied_spot.spot_number}}</h1>
+                            <form action="/view-parking-lot/{{occupied_spot.lot_id}}" method="POST">
+                            <div class="mb-3" >
+                                <label for="spot-id" class="form-label">Spot id</label>
+                                <input type="text" class="form-control" id="spot-id"  name="spot_id" value="{{ occupied_spot.id }}" readonly>
+                            </div>
+
+                            <div class="mb-3" >
+                                <label for="customer-name" class="form-label">Customer name</label>
+                                <input type="text" class="form-control" id="customer-name"  name="customer_name" value="{{ user_details.name }}" readonly>
+                            </div>
+
+                            <div class="mb-3" >
+                                <label for="customer-name" class="form-label">Vehicle Number</label>
+                                <input type="text" class="form-control" id="customer-name"  name="customer_name" value="{{ parking_record.vehicle_number }}" readonly>
+                            </div>
+
+                             <div class="mb-3" >
+                            <label for="parking-time" class="form-label">Parking time</label>
+                            <input type="text" class="form-control" id="parking-time"  name="parking_time" value="{{parking_record.parking_timestamp.strftime('%d-%m-%Y %I:%M %p')}}" readonly>
+                            </div>
+                            
+                            <div class="mb-3" >
+                                <label for="parking-count" class="form-label">No of times the spot is booked</label>
+                                <input type="text" class="form-control" id="parking-count"  name="parking_count" value="{{ parking_count }}" readonly>
+                            </div>
+                            
+                            <div class="mb-3" >
+                            <label for="Total-cost" class="form-label">Estimated Cost</label>
+                            <input type="text" class="form-control" id="Total-cost"  name="total_cost"  value="{{ estimated_cost }}" readonly>
+                            </div>
+                        
+                            <div class="form-buttons">
+                                <div style="text-align: center; display: inline-block;">
+                                <input type="submit" class="btn btn-warning" name="button_value" value="Go back">
+                                <br>
+                               </div>
+                            </div>
+                            </form>
+                        
+                    </div>
+                </div>            
+
+{% endblock %}
