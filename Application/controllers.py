@@ -240,5 +240,8 @@ def spot_delete(spot_id):
     else:
         return redirect(url_for('view_lot',lot_id=lot_id))
 
-
+@app.route('/user-details')
+def user_details():
+    user_details=User.query.filter_by(role='user').all()
+    return render_template('user_details.html',user_details=user_details)
 
