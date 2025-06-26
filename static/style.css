@@ -291,3 +291,8 @@ li,a,button{
 }
 /* #b0413e	for occupied */
 /* #2a9d8f for available */
+
+.form-buttons{
+    display: flex;
+    justify-content: space-evenly;
+}

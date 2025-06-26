@@ -1,0 +1,71 @@
+{% extends 'admin_base.html' %}
+
+{% block title %} View lot {% endblock %}
+
+{% block content %} 
+
+<div class="form_canvas">
+                    <div id="Available-spot-card" class="form-card">
+                        {% if parking_count==0 %}
+                            <h1>Spot number {{available_spot.spot_number}}</h1>
+                            <form action="/view-parking-spot/Available/Delete/{{available_spot.id}}" method="POST">
+                            <div class="mb-3" >
+                                <label for="spot-id" class="form-label">Spot id</label>
+                                <input type="text" class="form-control" id="spot-id"  name="spot_id" value="{{ available_spot.id }}" readonly>
+                            </div>
+                            <div class="mb-3" >
+                                <label for="lot-id" class="form-label">Lot id</label>
+                                <input type="text" class="form-control" id="lot-id"  name="spot_id" value="{{ available_spot.lot_id }}" readonly>
+                            </div>
+
+                            <div class="mb-3" >
+                                <label for="parking-count" class="form-label">No of times the spot is booked</label>
+                                <input type="text" class="form-control" id="parking-count"  name="parking_count" value="{{ parking_count }}" readonly>
+                            </div>
+                            
+                        
+                            <div class="form-buttons">
+                            <div style="text-align: center; display: inline-block;">
+                                <input type="submit" class="btn btn-danger" name="button_value" value="Delete">
+                            </div>
+                                <div style="text-align: center; display: inline-block;">
+                                <input type="submit" class="btn btn-warning" name="button_value" value="Cancel">
+                                <br>
+                               </div>
+                            </div>
+                            </form>
+                        {% else %}
+                                <h1>Spot number {{available_spot.spot_number}}</h1>
+                            <form action="" method="POST">
+                            <div class="mb-3" >
+                                <label for="spot-id" class="form-label">Spot id</label>
+                                <input type="text" class="form-control" id="spot-id"  name="spot_id" value="{{ available_spot.id }}" readonly>
+                            </div>
+                            <div class="mb-3" >
+                                <label for="lot-id" class="form-label">Lot id</label>
+                                <input type="text" class="form-control" id="lot-id"  name="spot_id" value="{{ available_spot.lot_id }}" readonly>
+                            </div>
+
+                            <div class="mb-3" >
+                                <label for="parking-count" class="form-label">No of times the spot is booked</label>
+                                <input type="text" class="form-control" id="parking-count"  name="parking_count" value="{{ parking_count }}" readonly>
+                            </div>
+                            
+                        
+                            <div class="form-buttons">
+                            <div style="text-align: center; display: inline-block;">
+                                <input type="submit" class="btn btn-danger" value="Delete" disabled>
+                                </div>
+                               <div style="text-align: center; display: inline-block;">
+                                <input type="submit" class="btn btn-warning" name="button_value" value="Cancel">
+                                <br>
+                               </div>
+                             </div>
+                            </div>
+                            
+                            </form>
+                        {% endif %}    
+                    </div>
+                </div>            
+
+{% endblock %}

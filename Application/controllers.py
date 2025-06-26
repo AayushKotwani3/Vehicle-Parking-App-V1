@@ -198,14 +198,15 @@ def view_lot(lot_id):
 
     return render_template('view_parkinglot.html',parking_spots=parking_spots)    
 
-@app.route('view-parking-spot/Available/<int:spot_id>')
+@app.route('/view-parking-spot/Available/<int:spot_id>')
 def available_spot(spot_id):
     available_spot=Parkingspots.query.filter_by(id=spot_id).first()
     parking_count=Parkingrecords.query.filter_by(spot_id=spot_id).count()
-    return render_template('Available_spot.html',available_spot=available_spot,parking_count=parking_count)
+    parking_record=Parkingrecords.query.filter_by(spot_id=spot_id).first()
+    return render_template('Available_spot.html',available_spot=available_spot,parking_count=parking_count,parking_record=parking_record)
     
 
-@app.route('view-parking-spot/Occupied/<int:spot_id>')
+@app.route('/view-parking-spot/Occupied/<int:spot_id>')
 def occupied_spot(spot_id):
     occupied_spot=Parkingspots.query.filter_by(id=spot_id).first()
     parking_count=Parkingrecords.query.filter_by(spot_id=spot_id).count()
@@ -213,3 +214,22 @@ def occupied_spot(spot_id):
     user_id=parking_record.user_id
     user_details=User.query.filter_by(id=user_id)
     return render_template('Occupied_spot.html',occupied_spot=occupied_spot,parking_count=parking_count,parking_record=parking_record,user_details=user_details)
+
+@app.route('/view-parking-spot/Available/Delete/<int:spot_id>',methods=['POST'])
+def spot_delete(spot_id):
+    button_value=request.form.get('button_value')
+    Parkingspot=Parkingspots.query.filter_by(id=spot_id).first()
+    lot_id=Parkingspot.lot_id
+    
+
+    if button_value=='Delete':
+        db.session.delete(Parkingspot)
+        db.session.commit()
+
+        return redirect(url_for('view_lot',lot_id=lot_id))
+
+    else:
+        return redirect(url_for('view_lot',lot_id=lot_id))
+
+
+

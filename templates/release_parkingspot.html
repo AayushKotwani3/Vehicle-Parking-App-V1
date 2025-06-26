@@ -5,7 +5,7 @@
 {% block content %} 
 
                 <div class="form_canvas">
-                    <div id="relese-spot-card" class="form-card">
+                    <div id="release-spot-card" class="form-card">
                         
                         <h1>Release Your Spot</h1>
                         <form action="/release-parking-spot/{{parking_record.id}}" method="POST">
@@ -14,12 +14,12 @@
                             <input type="text" class="form-control" id="spot-id"  name="spot_id" value="{{ parking_record.spot_id }}" readonly>
                         </div>
                         <div class="mb-3" >
-                            <label for="vehicle-number" class="form-label">Enter your vehicle number</label>
+                            <label for="vehicle-number" class="form-label"> vehicle number</label>
                             <input type="text" class="form-control" id="vehicle-number"  name="vehicle_number"  value="{{ parking_record.vehicle_number }}" readonly>
                         </div>
                         <div class="mb-3" >
                             <label for="parking-time" class="form-label">Parking time</label>
-                            <input type="text" class="form-control" id="parking-time"  name="parking_time" value="{{parking_record.parking_timestamp.strftime('%d-%m-%Y %I:%M %p')}}"" readonly>
+                            <input type="text" class="form-control" id="parking-time"  name="parking_time" value="{{parking_record.parking_timestamp.strftime('%d-%m-%Y %I:%M %p')}}" readonly>
                         </div>
                         <div class="mb-3" >
                             <label for="parking-time" class="form-label">Leaving time</label>
