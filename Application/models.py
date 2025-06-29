@@ -26,7 +26,7 @@ class Parkinglot(db.Model):
     is_active=db.Column(db.Boolean,default=True,nullable=False)
 
     #Relationship with parking spots
-    spots=db.relationship('Parkingspots',backref='lot',lazy=True)
+    spots=db.relationship('Parkingspots',backref='lot',lazy=True,cascade='all,delete-orphan')
 
 class Parkingspots(db.Model):
     __tablename__='parking_spots'

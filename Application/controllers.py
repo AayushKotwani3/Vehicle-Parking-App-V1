@@ -2,7 +2,7 @@ from flask import Flask,render_template,redirect,request,url_for,flash
 from flask import current_app as app
 from .models import * #inheriting models module to make indirect connection with app.py
 from datetime import datetime,timezone
-from random import shuffle
+# from random import shuffle
 
 @app.route('/')
 def home():
@@ -60,7 +60,10 @@ def login():
 def admin_dash():
     admin_details=User.query.filter_by(role='admin').first()
     parking_lot_details=Parkinglot.query.all()
-    return render_template('admin_dashboard.html',admin_details=admin_details,parking_lot_details=parking_lot_details)
+    available_parking_spots=Parkingspots.query.filter_by(status='A').all()
+    occupied_parking_spots=Parkingspots.query.filter_by(status='O').all()
+
+    return render_template('admin_dashboard.html',admin_details=admin_details,parking_lot_details=parking_lot_details,available_parking_spots=available_parking_spots,occupied_parking_spots=occupied_parking_spots)
 
 @app.route('/home/<int:user_id>',methods=['GET','POST'])
 def user_dash(user_id):
@@ -272,3 +275,19 @@ def user_details():
     user_details=User.query.filter_by(role='user').all()
     return render_template('user_details.html',user_details=user_details)
 
+@app.route('/delete-parking-lot/<int:lot_id>')
+def delete_lot(lot_id):
+    current_parking_lot=Parkinglot.query.filter_by(id=lot_id).first()
+    parking_spots=Parkingspots.query.filter_by(lot_id=lot_id).all()
+
+    for spot in parking_spots:
+        parking_history_count=Parkingrecords.query.filter_by(spot_id=spot.id).count()
+        if parking_history_count>0:
+            return redirect(url_for('admin_dash'))
+    db.session.delete(current_parking_lot)
+    db.session.commit()
+
+    return redirect(url_for('admin_dash'))
+
+    
+    

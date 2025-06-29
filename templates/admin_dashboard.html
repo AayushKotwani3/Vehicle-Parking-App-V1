@@ -19,8 +19,6 @@
                               <th>Pincode</th>
                               <th>Price</th>
                               <th>Max Spots</th>
-                              <th>Available (A)</th>
-                              <th>Occupied (O)</th>
                               <th>Active</th>
                               <th>Action</th>
                           </tr>
@@ -34,13 +32,11 @@
                             <td>{{lot.pincode}}</td>
                             <td>₹{{lot.price}}/hr</td>
                             <td>{{lot.maximum_spots}}</td>
-                            <td>35</td>
-                            <td>15</td>
                             <td>{{'Yes' if lot.is_active else 'No'}}</td>
                             <td class="parking-lot-table-buttons">
                                 <a href="/view-parking-lot/{{ lot.id }}"><button class="view-button">View</button></a>
                                  <a href="/edit-parking-lot/{{lot.id}}"><button class="edit-button">Edit</button></a>
-                                 <a href=""></a><button class="delete-button">Delete</button></a>
+                                 <a href="/delete-parking-lot/{{lot.id}}"><button class="delete-button">Delete</button></a>
                             </td>
                         </tr>
                         {% endfor %}
