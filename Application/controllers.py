@@ -123,14 +123,41 @@ def add_new_lot():
 @app.route('/edit-parking-lot/<int:lot_id>',methods=['GET','POST'])
 def edit_parking_lot(lot_id):
     current_parking_lot=Parkinglot.query.filter_by(id=lot_id).first()
+    previous_max_spots=current_parking_lot.maximum_spots
 
     if request.method=='POST':
         current_parking_lot.prime_location_name=request.form.get('prime_location_name')
         current_parking_lot.address=request.form.get('address')
         current_parking_lot.pincode=request.form.get('pincode')
         current_parking_lot.price=float(request.form.get('parking_spot_price'))
-        current_parking_lot.maximum_spots=int(request.form.get('max_spots'))
         current_parking_lot.is_active=bool(int(request.form.get('is_active')))
+
+        # Editing parking spots with new number
+        new_max_spots=current_parking_lot.maximum_spots=int(request.form.get('max_spots'))
+
+        if previous_max_spots<new_max_spots:
+            for i in range(previous_max_spots+1,new_max_spots+1):
+                new_spots=Parkingspots(lot_id=current_parking_lot.id,spot_number=i,status='A')
+                db.session.add(new_spots)
+
+        elif previous_max_spots>new_max_spots:
+            parking_spots=Parkingspots.query.filter_by(lot_id=lot_id).all()
+            parking_spot_count=Parkingspots.query.filter_by(lot_id=lot_id).count()
+
+            diff_in_spots=previous_max_spots-new_max_spots
+
+            for spot in reversed(parking_spots[-diff_in_spots:]):
+                parking_history_count=Parkingrecords.query.filter_by(spot_id=spot.id).count()
+                if parking_history_count>0:
+                    db.session.commit()
+                    return redirect(url_for('edit_parking_lot',lot_id=lot_id))
+                else:
+                    db.session.delete(spot)
+
+        else:
+            pass            
+
+        current_parking_lot.maximum_spots=Parkingspots.query.filter_by(lot_id=lot_id).count()
 
         db.session.commit()
         return redirect(url_for('admin_dash'))
