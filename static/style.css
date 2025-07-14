@@ -296,3 +296,15 @@ li,a,button{
     display: flex;
     justify-content: space-evenly;
 }
+.charts-container{
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+}
+
+.lot-status-bar-graph-container{
+    width: 650px;
+}
+.lot-revenue-pie-chart-container{
+    width: 650px;
+}

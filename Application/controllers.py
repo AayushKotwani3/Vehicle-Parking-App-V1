@@ -317,6 +317,29 @@ def admin_summary():
     plt.savefig('static/lot_status.png')
     plt.clf()
 
+    #pie chart
+    lot_revenue=dict()
+    for lot in parking_lots:
+        for spot in lot.spots:
+            for record in spot.record:
+                if record.parking_cost:
+                    if lot.prime_location_name in lot_revenue:
+                        lot_revenue[lot.prime_location_name]+=record.parking_cost
+                    else:
+                        lot_revenue[lot.prime_location_name]=record.parking_cost
+
+    lot_names=list(lot_revenue.keys())
+    lot_revenue=list(lot_revenue.values())                 
+                
+    labels=lot_names
+    sizes=lot_revenue
+    plt.pie(sizes,labels=labels,autopct="%1.1f%%")
+    plt.title("Revenue from each lot")
+    plt.savefig('static/lot_revenue.png')
+    plt.clf()
+
     return render_template('admin_summary.html')
 
-
+@app.route('/user-summary')
+def admin_summary():
+    pass

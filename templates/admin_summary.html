@@ -3,10 +3,17 @@
 {% block title %} Admin Dashboard {% endblock %}
 
 {% block content %} 
+<div class="charts-container">
 
-<div class="my-2">
-    <h3 class="mx-2">Lot's Status</h3>
-    <img src="/static/lot_status.png" alt="">
+
+    <div class="lot-status-bar-graph-container">
+        <h3 class="">Lot's Status</h3>
+        <img src="/static/lot_status.png" alt="">
+    </div>
+
+    <div class="lot-revenue-pie-chart-container">
+        <h3 class="">Revenue from each lot</h3>
+        <img src="/static/lot_revenue.png" alt="">
+    </div>
 </div>
-
 {% endblock %}
