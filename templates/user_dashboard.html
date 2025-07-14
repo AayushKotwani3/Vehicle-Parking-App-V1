@@ -34,7 +34,7 @@
                               <th>Address</th>
                               <th>Pincode</th>
                               <th>Price</th>
-                              <th>Available Spots</th>
+                              <th>Maximum Spots</th>
                               <th>Action</th>
                           </tr>
                         </thead>
@@ -47,7 +47,7 @@
                             <td>{{lot.address}}</td>
                             <td>{{lot.pincode}}</td>
                             <td>₹{{lot.price}}/hr</td>
-                            <td>25</td>
+                            <td>{{lot.maximum_spots}}</td>
                             <td class="parking-lot-table-buttons">
                                 
                                  <a href="/book-parking-spot/{{user_details.id}}/{{lot.id}}"><button class="book-button">Book</button></a>

@@ -2,6 +2,9 @@ from flask import Flask,render_template,redirect,request,url_for,flash
 from flask import current_app as app
 from .models import * #inheriting models module to make indirect connection with app.py
 from datetime import datetime,timezone
+import matplotlib.pyplot as plt
+import matplotlib
+matplotlib.use('Agg')
 # from random import shuffle
 
 @app.route('/')
@@ -82,6 +85,7 @@ def user_dash(user_id):
 
         return render_template('user_dashboard.html',user_details=user_details,parking_lot_details=parking_lot_details,parking_records=parking_records)
     else:
+        
         parking_lot_details=Parkinglot.query.filter_by(is_active=True).all()
         return render_template('user_dashboard.html',user_details=user_details,parking_lot_details=parking_lot_details,parking_records=parking_records)
 
@@ -174,6 +178,9 @@ def book_parking_lot(user_id,lot_id):
     spot_details=Parkingspots.query.filter_by(lot_id=lot_id,status='A').first()
     user_details=User.query.filter_by(role='user',id=user_id).first()
     parking_lot_details=Parkinglot.query.filter_by(id=lot_id).first()
+
+    if spot_details==None:
+        return "No spot available"
 
     if request.method=='POST':
         vehicle_number=request.form.get('vehicle_number')
@@ -290,4 +297,26 @@ def delete_lot(lot_id):
     return redirect(url_for('admin_dash'))
 
     
-    
+@app.route('/admin-summary')
+def admin_summary():
+    parking_lots=Parkinglot.query.all()
+    active_lots=0
+    not_active_lots=0
+    for lot in parking_lots:
+        if lot.is_active==True:
+            active_lots+=1
+        else:
+            not_active_lots+=1
+    #bar graph
+    labels=['Active','Not active']
+    sizes=[ active_lots,not_active_lots]
+    plt.bar(labels,sizes)
+    plt.xlabel("Lots")
+    plt.ylabel('Status')
+    plt.title('Active vs Non active lots')
+    plt.savefig('static/lot_status.png')
+    plt.clf()
+
+    return render_template('admin_summary.html')
+
+
