@@ -10,5 +10,29 @@
         <img src="/static/lots_used.png" alt="">
     </div>
     
-</div>
+   <div class="parking-record-summary-table">
+
+    
+     <table class="parkinglot-table">
+        <thead>
+            <tr>
+                <th>Lot name</th>
+                <th>Total duration</th>
+                <th>Parking cost</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for lot_name,total_duration in parking_duration.items() %}
+        <tr >
+            <td>{{lot_name}}</td>
+            <td>{{total_duration}}/hrs</td>
+            <td>₹{{parking_cost[lot_name]}}</td>
+
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+</div>   
+</div>                
 {% endblock %}

@@ -364,12 +364,30 @@ def admin_summary():
 def user_summary(user_id):
     parking_records=Parkingrecords.query.filter_by(user_id=user_id,status='released').all()
     lots_used=dict()
+    parking_duration=dict()
+    parking_cost=dict()
+
     for record in parking_records:
         lot_name=record.spot.lot.prime_location_name
         if lot_name in lots_used:
             lots_used[lot_name]+=1
         else:
             lots_used[lot_name]=1
+
+        # calculating duration of each parking
+        if record.parking_timestamp and record.leaving_timestamp:
+            duration=(record.leaving_timestamp-record.parking_timestamp).total_seconds()
+            duration=round(duration/3600,2)
+
+            if lot_name in parking_duration:
+                parking_duration[lot_name]+=duration
+            else:
+                parking_duration[lot_name]=duration
+
+            if lot_name in parking_cost:
+                parking_cost[lot_name]+=record.parking_cost
+            else:
+                parking_cost[lot_name]=record.parking_cost            
 
     if lots_used==None:
         return 'No parking records'
@@ -382,7 +400,7 @@ def user_summary(user_id):
     plt.title('Percentage of each parking lots used')
     plt.savefig('static/lots_used.png')
     plt.clf()
-    return render_template('user_summary.html',user_id=user_id)
+    return render_template('user_summary.html',user_id=user_id,parking_duration=parking_duration,parking_cost=parking_cost)
 
 @app.route('/logout')
 def logout():

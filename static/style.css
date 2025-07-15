@@ -309,3 +309,13 @@ li,a,button{
 .lot-revenue-pie-chart-container{
     width: 650px;
 }
+.lots-used-pie-chart-container{
+    width: 650px;
+}
+
+.parking-record-summary-table{
+    width: 500px;
+    margin-top: 50px;
+    overflow-y: auto;
+    max-height: 300px;
+}
