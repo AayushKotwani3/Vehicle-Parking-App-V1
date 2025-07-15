@@ -87,7 +87,7 @@ def user_dash(user_id):
     else:
         
         parking_lot_details=Parkinglot.query.filter_by(is_active=True).all()
-        return render_template('user_dashboard.html',user_details=user_details,parking_lot_details=parking_lot_details,parking_records=parking_records)
+        return render_template('user_dashboard.html',user_details=user_details,parking_lot_details=parking_lot_details,parking_records=parking_records,user_id=user_id)
 
 
 @app.route('/add-new-lot',methods=['GET','POST'])
@@ -193,10 +193,10 @@ def book_parking_lot(user_id,lot_id):
 
         return redirect(url_for('user_dash',user_id=user_details.id))
 
-    return render_template('book_parkingspot.html',spot_details=spot_details,user_details=user_details,parking_lot_details=parking_lot_details)
+    return render_template('book_parkingspot.html',spot_details=spot_details,user_details=user_details,parking_lot_details=parking_lot_details,user_id=user_id)
 
-@app.route('/release-parking-spot/<int:record_id>',methods=['GET','POST'])
-def release_spot(record_id):
+@app.route('/release-parking-spot/<int:record_id>/<int:user_id>',methods=['GET','POST'])
+def release_spot(record_id,user_id):
     parking_record=Parkingrecords.query.filter_by(id=record_id).first()
 
     if request.method=='POST':
@@ -226,7 +226,7 @@ def release_spot(record_id):
     final_cost=round((spot_price*total_time_in_hours),2)
 
 
-    return render_template('release_parkingspot.html',parking_record=parking_record,leaving_timestamp=leaving_timestamp,final_cost=final_cost)
+    return render_template('release_parkingspot.html',parking_record=parking_record,leaving_timestamp=leaving_timestamp,final_cost=final_cost,user_id=user_id)
 
 @app.route('/view-parking-lot/<int:lot_id>',methods=['GET','POST'])
 def view_lot(lot_id):
@@ -338,8 +338,52 @@ def admin_summary():
     plt.savefig('static/lot_revenue.png')
     plt.clf()
 
+    #bar graph for spots to lot
+    lot_to_spots=dict()
+    for lot in parking_lots:
+        for spot in lot.spots:
+            if lot.prime_location_name in lot_to_spots:
+                lot_to_spots[lot.prime_location_name]+=1
+            else:
+                lot_to_spots[lot.prime_location_name]=1
+    lot_names=list(lot_to_spots.keys())
+    spot_count=list(lot_to_spots.values())  
+    labels=lot_names
+    sizes=spot_count
+    plt.figure(figsize=(10,6))
+    plt.bar(labels,sizes)
+    plt.xlabel("Lots")
+    plt.ylabel('No of spots')
+    
+    plt.title('No of spots per lot')
+    plt.savefig('static/lot_to_spots.png')
+    plt.clf()          
     return render_template('admin_summary.html')
 
-@app.route('/user-summary')
-def admin_summary():
-    pass
+@app.route('/user-summary/<int:user_id>')
+def user_summary(user_id):
+    parking_records=Parkingrecords.query.filter_by(user_id=user_id,status='released').all()
+    lots_used=dict()
+    for record in parking_records:
+        lot_name=record.spot.lot.prime_location_name
+        if lot_name in lots_used:
+            lots_used[lot_name]+=1
+        else:
+            lots_used[lot_name]=1
+
+    if lots_used==None:
+        return 'No parking records'
+    
+    labels=list(lots_used.keys())
+    sizes=list(lots_used.values())
+
+    plt.figure(figsize=(6,6))
+    plt.pie(sizes,labels=labels,autopct="%1.1f%%")
+    plt.title('Percentage of each parking lots used')
+    plt.savefig('static/lots_used.png')
+    plt.clf()
+    return render_template('user_summary.html',user_id=user_id)
+
+@app.route('/logout')
+def logout():
+    return redirect(url_for('login'))

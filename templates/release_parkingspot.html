@@ -8,7 +8,7 @@
                     <div id="release-spot-card" class="form-card">
                         
                         <h1>Release Your Spot</h1>
-                        <form action="/release-parking-spot/{{parking_record.id}}" method="POST">
+                        <form action="/release-parking-spot/{{parking_record.id}}/{{parking_record.user_id}}" method="POST">
                         <div class="mb-3" >
                             <label for="spot-id" class="form-label">Spot id</label>
                             <input type="text" class="form-control" id="spot-id"  name="spot_id" value="{{ parking_record.spot_id }}" readonly>
