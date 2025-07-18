@@ -277,8 +277,20 @@ def spot_delete(spot_id):
     else:
         return redirect(url_for('view_lot',lot_id=lot_id))
 
-@app.route('/user-details')
+@app.route('/user-details',methods=['GET','POST'])
 def user_details():
+    if request.method=='POST':
+        key=request.form.get('key')
+        search_value=request.form.get('search_value')
+
+        if key=='userid':
+            user_details=User.query.filter_by(id=search_value).all()
+        elif key=='username':
+            user_details=User.query.filter_by(name=search_value).all()  
+        else:
+            user_details=User.query.filter_by(email=search_value).all()
+
+        return render_template('user_details.html',user_details=user_details)
     user_details=User.query.filter_by(role='user').all()
     return render_template('user_details.html',user_details=user_details)
 
@@ -406,7 +418,20 @@ def user_summary(user_id):
 def logout():
     return redirect(url_for('login'))
 
-@app.route('/parking-records')
+@app.route('/parking-records',methods=['GET','POST'])
 def parking_records():
+    if request.method=='POST':
+        key=request.form.get('key')
+        search_value=request.form.get('search_value')
+
+        if key=='userid':
+            parking_records=Parkingrecords.query.filter_by(user_id=search_value).all()
+        elif key=='vehicleno':
+            parking_records=Parkingrecords.query.filter_by(vehicle_number=search_value).all()  
+        else:
+            parking_records=Parkingrecords.query.filter_by(spot_id=search_value).all()
+
+        return render_template('parking_records.html',parking_records=parking_records)
+    
     parking_records=Parkingrecords.query.all()
     return render_template('parking_records.html',parking_records=parking_records)

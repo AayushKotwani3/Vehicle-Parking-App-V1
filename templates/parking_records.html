@@ -5,10 +5,25 @@
 {% block content %} 
 
 <div class="parkinglot-table-heading-container">
-                    <h2>Parking Records</h2>
-                    
-                </div>
-            
+  <h2>Parking Records</h2>
+</div>
+            <div class="parkinglot-table-heading-container-user">
+                    <h2>Search Parking record</h2>                    
+                </div>        
+        
+        
+                <form class="d-flex" action="{{ url_for('parking_records') }}" method="POST">
+
+                  <select class="form-select me-2" aria-label="Default select example" name="key" required>
+                    <option selected>select</option>
+                    <option value="userid">User id</option>
+                    <option value="vehicleno">Vehicle no</option>
+                    <option value="spotid">spot id</option>
+                  </select>
+                  <input class="form-control me-2" type="text" name="search_value" placeholder="Search" aria-label="Search" required>
+                  
+                  <input class="btn btn-outline-success" type="submit" value="Search">
+                </form>
                 <div class="parkinglot-table-container">
                     
                   <table class="parkinglot-table">
