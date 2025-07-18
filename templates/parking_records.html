@@ -1,0 +1,43 @@
+{% extends 'admin_base.html' %}
+
+{% block title %} Parking Records {% endblock %}
+
+{% block content %} 
+
+<div class="parkinglot-table-heading-container">
+                    <h2>Parking Records</h2>
+                    
+                </div>
+            
+                <div class="parkinglot-table-container">
+                    
+                  <table class="parkinglot-table">
+                        <thead>
+                          <tr>
+                              <th>Lot name</th>
+                              <th>Spot id</th>
+                              <th>User name</th>
+                              <th>Vehicle No.</th>
+                              <th>Status</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                        <!-- Looping starts here -->
+                         {% for record in parking_records %}
+                        <tr>
+                            <td>{{record.spot.lot.prime_location_name}}</td>
+                            <td>{{record.spot.id}}</td>
+                            <td>{{record.user.name}}</td>
+                            <td>{{record.vehicle_number}}</td>
+                            <td>{{record.status}}</td>
+                        </tr>
+                        {% endfor %}
+                        
+                            
+                        
+                    </tbody>
+                  </table>
+                  
+                </div>
+
+{% endblock %}

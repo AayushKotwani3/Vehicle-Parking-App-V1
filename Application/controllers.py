@@ -83,7 +83,7 @@ def user_dash(user_id):
         else:
             parking_lot_details=Parkinglot.query.filter_by(is_active=True,prime_location_name=search_value).all()  
 
-        return render_template('user_dashboard.html',user_details=user_details,parking_lot_details=parking_lot_details,parking_records=parking_records)
+        return render_template('user_dashboard.html',user_details=user_details,parking_lot_details=parking_lot_details,parking_records=parking_records,user_id=user_id)
     else:
         
         parking_lot_details=Parkinglot.query.filter_by(is_active=True).all()
@@ -405,3 +405,8 @@ def user_summary(user_id):
 @app.route('/logout')
 def logout():
     return redirect(url_for('login'))
+
+@app.route('/parking-records')
+def parking_records():
+    parking_records=Parkingrecords.query.all()
+    return render_template('parking_records.html',parking_records=parking_records)
