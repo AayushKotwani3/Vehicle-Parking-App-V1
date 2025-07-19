@@ -1,6 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Delius+Swash+Caps&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
 
 *{
     box-sizing: border-box;
@@ -326,4 +329,25 @@ li,a,button{
     margin-top: 50px;
     overflow-y: auto;
     max-height: 300px;
+}
+
+.home-container{
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-y: auto;
+   
+}
+.home-container-canvas{
+    margin-top: 100px;
+    width: 900px;
+    background: #f4f4f4;
+    color: #090f22;
+    height: 350px;
+    overflow-y: auto;
+    
+}
+.home-container-heading{
+    margin-left: 140px;
 }

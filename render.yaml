@@ -1,7 +1,0 @@
-services:
-  - type: web
-    name: parking-app
-    env: python       # <--- Tells Render: this is a plain Python app
-    buildCommand: pip install -r requirements.txt
-    startCommand: gunicorn app:app
-    plan: free
