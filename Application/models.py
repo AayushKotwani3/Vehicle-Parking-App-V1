@@ -1,6 +1,7 @@
+# Imports the database instance from a local module.
 from .database import db
 
-# USER TABLE
+# Defines the User model, storing user credentials, personal info, and linking to their parking history.
 class User(db.Model):
     __tablename__='user'
     id=db.Column(db.Integer,primary_key=True)
@@ -14,7 +15,7 @@ class User(db.Model):
     #relationship with records
     record=db.relationship('Parkingrecords',backref='user',lazy=True)
 
-#Parking Lot Table
+# Represents a physical parking location and contains all its associated parking spots.
 class Parkinglot(db.Model):
     __tablename__='parking_lot'
     id=db.Column(db.Integer,primary_key=True)
@@ -28,6 +29,7 @@ class Parkinglot(db.Model):
     #Relationship with parking spots
     spots=db.relationship('Parkingspots',backref='lot',lazy=True,cascade='all,delete-orphan')
 
+# Represents an individual parking spot within a lot, tracking its availability and history.
 class Parkingspots(db.Model):
     __tablename__='parking_spots'
     id=db.Column(db.Integer,primary_key=True)
@@ -38,6 +40,8 @@ class Parkingspots(db.Model):
     #relationship with records
     record=db.relationship('Parkingrecords',backref='spot',lazy=True)
 
+# Acts as a transaction log, linking a User to a Parkingspot for a specific parking event.
+# Stores details like vehicle number, timestamps, and final cost.
 class Parkingrecords(db.Model):
     __tablename__='parking_records'
     id=db.Column(db.Integer,primary_key=True)
